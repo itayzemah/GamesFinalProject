@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class PickGun : MonoBehaviour
 {
-    public GameObject gunInDrawer;
-    public GameObject gunInHand;
+    public GameObject gunInStandby;
+    public GameObject Enemy1gunInHand;
+    public GameObject Enemy2gunInHand;
+    public GameObject Team2gunInHand;
+    public GameObject PlayergunInHand;
 
     private void OnMouseDown()
     {
-        gunInDrawer.SetActive(false);
-        gunInHand.SetActive(true);
+        gunInStandby.SetActive(false);
+        PlayergunInHand.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other) // player or other character's collider
     {
-        if (other.name != "Player")
+        switch (other.name)
         {
-            gunInDrawer.SetActive(false);
-            gunInHand.SetActive(true);
+            case "Enemy1":
+                gunInStandby.SetActive(false);
+                Enemy1gunInHand.SetActive(true);
+                break;
+            case "Enemy2":
+                gunInStandby.SetActive(false);
+                Enemy2gunInHand.SetActive(true);
+                break;
+            case "Team2":
+                gunInStandby.SetActive(false);
+                Team2gunInHand.SetActive(true);
+                break;
         }
     }
 

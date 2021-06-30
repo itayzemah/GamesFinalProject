@@ -31,23 +31,23 @@ public class GunShooting : MonoBehaviour
         {
             Enemy2.SetActive(false);
         }
-      
 
-        if (Input.GetButtonDown("TouchBtn") && GunInHand.activeSelf )
+
+        if (Input.GetButtonDown("TouchBtn") && GunInHand.activeSelf)
         {
             RaycastHit hit;
-            if(Physics.Raycast(aCamera.transform.position, aCamera.transform.forward, out hit))
+            if (Physics.Raycast(aCamera.transform.position, aCamera.transform.forward, out hit))
             {
                 target.transform.position = hit.point;
                 StartCoroutine(ShowShot());
-                
-                if(hit.transform.gameObject.name==Enemy1.gameObject.name )
+
+                if (hit.transform.gameObject.GetComponent<Collider>().Equals(Enemy1.gameObject.GetComponent<Collider>()))
                 {
                     Animator a = Enemy1.GetComponent<Animator>();
                     a.SetBool("IsDying", true);
-                    
+
                 }
-                if(hit.transform.gameObject.name==Enemy2.gameObject.name )
+                if (hit.transform.gameObject.GetComponent<Collider>().Equals(Enemy2.gameObject.GetComponent<Collider>()))
                 {
                     Animator a = Enemy2.GetComponent<Animator>();
                     a.SetBool("IsDying", true);

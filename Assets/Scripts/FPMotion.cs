@@ -14,6 +14,8 @@ public class FPMotion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>(); // gets player controller
         footStepSound = GetComponent<AudioSource>();
     }
@@ -36,7 +38,7 @@ public class FPMotion : MonoBehaviour
                 dx = Input.GetAxis("Horizontal") * speed; // Horizontal means 'A' or 'D'
                 dz = Input.GetAxis("Vertical") * speed; // Verticalal means 'W' or 'S'
 
-                Vector3 motion = new Vector3(dx, 0, dz); // in local coordinates
+                Vector3 motion = new Vector3(dx, -1, dz); // in local coordinates
 
                 motion = transform.TransformDirection(motion); // in Global coordinates
                 controller.Move(motion);

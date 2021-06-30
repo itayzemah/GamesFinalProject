@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace EckTechGames
@@ -10,6 +11,7 @@ namespace EckTechGames
 		static AutoSaveExtension()
 		{
 			EditorApplication.playmodeStateChanged += AutoSaveWhenPlaymodeStarts;
+
 		}
 
 		private static void AutoSaveWhenPlaymodeStarts()
@@ -17,9 +19,12 @@ namespace EckTechGames
 			// If we're about to run the scene...
 			if (EditorApplication.isPlayingOrWillChangePlaymode && !EditorApplication.isPlaying)
 			{
-				// Save the scene and the assets.
-				EditorApplication.SaveScene();
-				EditorApplication.SaveAssets();
+                // Save the scene and the assets.
+                EditorApplication.SaveScene();
+                //EditorSceneManager.SaveScene();
+
+                //EditorApplication.SaveAssets();
+				AssetDatabase.SaveAssets();
 			}
 		}
 	}

@@ -11,12 +11,13 @@ public class LookForGun : MonoBehaviour
     public List<GameObject> gunList;
     private Animator anim;
     private NavMeshAgent agent;
-    private GameObject puckGun;
+    public GameObject myGun;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        
     }
 
     // Update is called once per frame
@@ -51,7 +52,10 @@ public class LookForGun : MonoBehaviour
 
     private bool TryTakeGun()
     {
-        
+        if (myGun.activeSelf)
+        {
+            HasGun = true;
+        }
         return false;
     }
 }
